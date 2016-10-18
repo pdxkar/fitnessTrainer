@@ -5,12 +5,12 @@ You must add the session_start() PHP function to the start of every Web page (no
 session information. If the session_start() function is not present, the Web page can't access
 data in the session array variable. (Lesson 10 chap 3)-->
 <?php
-	session_start();
+session_start ();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <!-- sources include: 
+<!-- sources include: 
   http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
   http://odyniec.net/projects/imgareaselect/
   http://odyniec.net/projects/imgareaselect/examples.html
@@ -21,51 +21,48 @@ data in the session array variable. (Lesson 10 chap 3)-->
   http://www.phpforkids.com/php/php-forms-file-uploads.php
   http://www.justinphillips.co/design/html/upload-crop-and-resize-images-with-php
   -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script type="text/javascript" src="jquery.imgareaselect.pack.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="main.css" /> 
-	<!--     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.imgareaselect.pack.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="imgareaselect-default.css" />
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<!--  <link rel="stylesheet" type="text/css" href="css/imgareaselect-default.css" /> -->
-	 <link rel="stylesheet" type="text/css" href="imgareaselect-default.css" />
-<!--   <script type="text/javascript" src="scripts/jquery.min.js"></script>
-  <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script> -->
-<!--     <script type="text/javascript" src="jquery.min.js"></script> -->
+<title>The Distillery</title>
 
-
-	
-	<title>The Distillery</title>
 </head>
 <body>
-  <div id="header">
+	<div id="header">
        <?php include("header.inc.php"); ?>
   </div>
-  <div id="content">
+	<div id="content">
 	  <?php
-	  		if (!isset($_REQUEST['content']))
-	            include("welcome.inc.php");
-	        else
-	        {
-	          include("resourceDescription.inc.php");
-	        }
-	  ?>
+			if (! isset ( $_REQUEST ['content'] ))
+				include ("welcome.inc.php");
+			else {
+				include ("resourceDescription.inc.php");
+			}
+			?>
   </div>
-  <div id="main">
+	<div id="main">
       <?php
-          if (!isset($_REQUEST['content']))
-             include("main.inc.php");
-          else
-          {
-           $content = $_REQUEST['content'];
-           $nextpage = $content . ".inc.php";
-           include($nextpage);
-          }
-      ?>
+						if (! isset ( $_REQUEST ['content'] ))
+							include ("main.inc.php");
+						else {
+							$content = $_REQUEST ['content'];
+							$nextpage = $content . ".inc.php";
+							include ($nextpage);
+						}
+						?>
   </div>
-  <div id="footer">
+	<div id="footer">
          <?php include("footer.inc.php"); ?>
   </div>
 </body>
