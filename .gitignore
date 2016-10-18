@@ -1,0 +1,13 @@
+vendor/
+.env
+
+#Eclipse
+.buildpath
+.project
+.settings/
+
+#sql query file for quick and dirty database checks
+sqlquery.txt
+
+#code library for copy paste stuff
+codeSamples.php
