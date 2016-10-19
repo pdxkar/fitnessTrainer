@@ -33,15 +33,17 @@ if (! isset ( $_SESSION ['random_key'] ) || strlen ( $_SESSION ['random_key'] ) 
 // ########################################################################################################
 $upload_dir = "upload_pic"; // The directory for the images to be saved in
 $upload_path = $upload_dir . "/"; // The path to where the image will be saved
-$large_image_prefix = "resize_"; // The prefix name to large image
-$thumb_image_prefix = "thumbnail_"; // The prefix name to the thumb image
-$large_image_name = $large_image_prefix . $_SESSION ['random_key']; // New name of the large image (append the timestamp to the filename)
-$thumb_image_name = $thumb_image_prefix . $_SESSION ['random_key']; // New name of the thumbnail image (append the timestamp to the filename)
+//$large_image_prefix = "resize_"; // The prefix name to large image
+$large_image_prefix = "cropped-"; // The prefix name to cropped image
+//$thumb_image_prefix = "thumbnail_"; // The prefix name to the thumb image
+//$large_image_name = $large_image_prefix . $_SESSION ['random_key']; // New name of the large image (append the timestamp to the filename)
+$large_image_name = $large_image_prefix . $_FILES ['image'] ['name']; // New name of the large image (append the timestamp to the filename)
+//$thumb_image_name = $thumb_image_prefix . $_SESSION ['random_key']; // New name of the thumbnail image (append the timestamp to the filename)
 $max_file = "3"; // Maximum file size in MB
 $max_width = "500"; // Max width allowed for the large image
-$thumb_width = "100"; // Width of thumbnail image
-$thumb_height = "100"; // Height of thumbnail image
-                       // Only one of these image types should be allowed for upload
+//$thumb_width = "100"; // Width of thumbnail image
+//$thumb_height = "100"; // Height of thumbnail image
+// Only one of these image types should be allowed for upload
 $allowed_image_types = array (
 		'image/pjpeg' => "jpg",
 		'image/jpeg' => "jpg",
@@ -101,7 +103,7 @@ function resizeImage($image, $width, $height, $scale) {
 	return $image;
 }
 // You do not need to alter these functions
-function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start_width, $start_height, $scale) {
+/* function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start_width, $start_height, $scale) {
 	list ( $imagewidth, $imageheight, $imageType ) = getimagesize ( $image );
 	$imageType = image_type_to_mime_type ( $imageType );
 	
@@ -139,7 +141,7 @@ function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start
 	}
 	chmod ( $thumb_image_name, 0777 );
 	return $thumb_image_name;
-}
+} */
 // You do not need to alter these functions
 function getHeight($image) {
 	$size = getimagesize ( $image );
@@ -155,7 +157,7 @@ function getWidth($image) {
 
 // Image Locations
 $large_image_location = $upload_path . $large_image_name . $_SESSION ['user_file_ext'];
-$thumb_image_location = $upload_path . $thumb_image_name . $_SESSION ['user_file_ext'];
+//$thumb_image_location = $upload_path . $thumb_image_name . $_SESSION ['user_file_ext'];
 
 // Create the upload directory with the right permissions if it doesn't exist
 if (! is_dir ( $upload_dir )) {
@@ -165,15 +167,15 @@ if (! is_dir ( $upload_dir )) {
 
 // Check to see if any images with the same name already exist
 if (file_exists ( $large_image_location )) {
-	if (file_exists ( $thumb_image_location )) {
+/* 	if (file_exists ( $thumb_image_location )) {
 		$thumb_photo_exists = "<img src=\"" . $upload_path . $thumb_image_name . $_SESSION ['user_file_ext'] . "\" alt=\"Thumbnail Image\"/>";
 	} else {
 		$thumb_photo_exists = "";
-	}
+	} */
 	$large_photo_exists = "<img src=\"" . $upload_path . $large_image_name . $_SESSION ['user_file_ext'] . "\" alt=\"Large Image\"/>";
 } else {
 	$large_photo_exists = "";
-	$thumb_photo_exists = "";
+	//$thumb_photo_exists = "";
 }
 
 if (isset ( $_POST ["upload"] )) {
@@ -183,8 +185,8 @@ if (isset ( $_POST ["upload"] )) {
 	$y1 = $_POST ["y1"];
 	$x2 = $_POST ["x2"];
 	$y2 = $_POST ["y2"];
-	$w = $_POST ["w"];
-	$h = $_POST ["h"];
+	$w = $_POST ["w"];  //I don't think this is used
+	$h = $_POST ["h"];  //I don't think this is used
 	
 	//When a file is uploaded (by pushing the "upload" button on the form), it gets stored in
 	//a temporary area on the server until it is moved. The file has to be moved from that area,
@@ -235,21 +237,31 @@ if (isset ( $_POST ["upload"] )) {
 			//$thumb_image_prefix = "thumbnail_"; // The prefix name to the thumb image
 			//$large_image_name = $large_image_prefix . $_SESSION ['random_key']; // New name of the large image (append the timestamp to the filename)
 			
-			//save the cropped image
-			//???
-			
 			// this file could now has an unknown file extension (we hope it's one of the ones set above!)
 			// At this point $large_image_location is where the image is going to go, not where it currently is
 			$large_image_location = $large_image_location . "." . $file_ext;
 			
-			$thumb_image_location = $thumb_image_location . "." . $file_ext;
+		//	$thumb_image_location = $thumb_image_location . "." . $file_ext;
 			
 			// put the file ext in the session so we know what file to look for once its uploaded
 			$_SESSION ['user_file_ext'] = "." . $file_ext;
 			
-			//move the cropped image (that originally was userfile_tmp) to large_image_location
-			//newImage needs to be a string that is the location of the cropped image, not the image itself
-			move_uploaded_file ( $userfile_tmp, $large_image_location );
+			//move the cropped image(?) to large_image_location
+			//newImage needs to be a string that is the location of the cropped image, not the image it
+			
+			if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
+				$_SESSION["largeImageLocation"]=$large_image_location;
+//				echo 'File ' .$large_image_location. ' succesfully copied';
+// 				echo("<script>");
+// 				echo("var x = document.createElement(\"IMG\")");
+// 				echo("x.setAttribute(\"src\", \"sprocket.jpg\")");
+// 				echo("x.setAttribute(\"id\", \"sprocket\")");
+// 				echo("x.setAttribute(\"width\", \"304\")");
+// 				echo("x.setAttribute(\"width\", \"228\")");
+// 				echo("document.body.appendChild(x)");
+// 				echo("$('#sprocket').imgAreaSelect({ x1: 26, y1: 26, x2: 205, y2: 143 })");
+// 				echo("</script>");
+			}
 			chmod ( $large_image_location, 0777 );
 			
 			$width = getWidth ( $large_image_location );
@@ -263,19 +275,18 @@ if (isset ( $_POST ["upload"] )) {
 				$uploaded = resizeImage ( $large_image_location, $width, $height, $scale );
 			}
 			// Delete the thumbnail file so the user can create a new one
-			if (file_exists ( $thumb_image_location )) {
+/* 			if (file_exists ( $thumb_image_location )) {
 				unlink ( $thumb_image_location );
-			}
+			} */
 		}
-		// Refresh the page to show the new uploaded image
+		// Refresh the page to show the new uploaded image (?) <-it's not showing the image
 		header ( "location:" . $_SERVER ["PHP_SELF"] );
 		exit ();
 	}
 }
 
 
-if (isset ( $_POST ["upload_thumbnail"] ) && strlen ( $large_photo_exists ) > 0) {
-	print("in the POST upload_Thumbnail part");
+/* if (isset ( $_POST ["upload_thumbnail"] ) && strlen ( $large_photo_exists ) > 0) {
 	// Get the new coordinates to crop the image.
 	$x1 = $_POST ["x1"];
 	$y1 = $_POST ["y1"];
@@ -289,18 +300,18 @@ if (isset ( $_POST ["upload_thumbnail"] ) && strlen ( $large_photo_exists ) > 0)
 	// Reload the page again to view the thumbnail
 	header ( "location:" . $_SERVER ["PHP_SELF"] );
 	exit ();
-}
+} */
 
 if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
 	// get the file locations
 	$large_image_location = $upload_path . $large_image_prefix . $_GET ['t'];
-	$thumb_image_location = $upload_path . $thumb_image_prefix . $_GET ['t'];
+//	$thumb_image_location = $upload_path . $thumb_image_prefix . $_GET ['t'];
 	if (file_exists ( $large_image_location )) {
 		unlink ( $large_image_location );
 	}
-	if (file_exists ( $thumb_image_location )) {
+/* 	if (file_exists ( $thumb_image_location )) {
 		unlink ( $thumb_image_location );
-	}
+	} */
 	header ( "location:" . $_SERVER ["PHP_SELF"] );
 	exit ();
 }
@@ -330,7 +341,7 @@ if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
                         $('#x2').val(selection.x2);
                         $('#y2').val(selection.y2);           
                     }
-                });
+                })
             }
 
 			//readAsDataURL returns the file as a data url
@@ -368,100 +379,29 @@ if (strlen ( $large_photo_exists ) > 0) {
 	$current_large_image_width = getWidth ( $large_image_location );
 	$current_large_image_height = getHeight ( $large_image_location );
 	?>
-<script type="text/javascript">
-function preview(img, selection) { 
-	var scaleX = <?php echo $thumb_width;?> / selection.width; 
-	var scaleY = <?php echo $thumb_height;?> / selection.height; 
-	
-	$('#thumbnail + div > img').css({ 
-		width: Math.round(scaleX * <?php echo $current_large_image_width;?>) + 'px', 
-		height: Math.round(scaleY * <?php echo $current_large_image_height;?>) + 'px',
-		marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px', 
-		marginTop: '-' + Math.round(scaleY * selection.y1) + 'px' 
-	});
-	$('#x1').val(selection.x1);
-	$('#y1').val(selection.y1);
-	$('#x2').val(selection.x2);
-	$('#y2').val(selection.y2);
-	$('#w').val(selection.width);
-	$('#h').val(selection.height);
-} 
 
-$(document).ready(function () { 
-	$('#save_thumb').click(function() {
-		var x1 = $('#x1').val();
-		var y1 = $('#y1').val();
-		var x2 = $('#x2').val();
-		var y2 = $('#y2').val();
-		var w = $('#w').val();
-		var h = $('#h').val();
-		if(x1=="" || y1=="" || x2=="" || y2=="" || w=="" || h==""){
-			alert("You must make a selection first");
-			return false;
-		}else{
-			return true;
-		}
-	});
-}); 
-
-$(window).load(function () { 
-	$('#thumbnail').imgAreaSelect({ aspectRatio: '1:<?php echo $thumb_height/$thumb_width;?>', onSelectChange: preview }); 
-});
-
-</script>
 <?php }?>
-<h1>Photo Upload and Crop</h1>
 <?php
-// Display error message if there are any
+// Display message if there are any errors
 if (strlen ( $error ) > 0) {
 	echo "<ul><li><strong>Error!</strong></li><li>" . $error . "</li></ul>";
 }
-if (strlen ( $large_photo_exists ) > 0 && strlen ( $thumb_photo_exists ) > 0) {
-	echo $large_photo_exists . "&nbsp;" . $thumb_photo_exists;
-	echo "<p><a href=\"" . $_SERVER ["PHP_SELF"] . "?a=delete&t=" . $_SESSION ['random_key'] . $_SESSION ['user_file_ext'] . "\">Delete images</a></p>";
-	echo "<p><a href=\"" . $_SERVER ["PHP_SELF"] . "\">Upload another</a></p>";
-	// Clear the time stamp session and user file extension
-	$_SESSION ['random_key'] = "";
-	$_SESSION ['user_file_ext'] = "";
-} else {
-	if (strlen ( $large_photo_exists ) > 0) {
-		?>
-		<h2>Create Thumbnail</h2>
-	<div align="center">
-		<img
-			src="<?php echo $upload_path.$large_image_name.$_SESSION['user_file_ext'];?>"
-			style="float: left; margin-right: 10px;" id="thumbnail"
-			alt="Create Thumbnail" />
-		<div style="border:1px #e5e5e5 solid; float:left; position:relative; overflow:hidden; width:<?php echo $thumb_width;?>px; height:<?php echo $thumb_height;?>px;">
-			<img
-				src="<?php echo $upload_path.$large_image_name.$_SESSION['user_file_ext'];?>"
-				style="position: relative;" alt="Thumbnail Preview" />
-		</div>
-		<br style="clear: both;" />
-		<form name="thumbnail" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-			<input type="hidden" name="x1" value="" id="x1" /> 
-			<input type="hidden" name="y1" value="" id="y1" /> 
-			<input type="hidden" name="x2" value="" id="x2" /> 
-			<input type="hidden" name="y2" value="" id="y2" /> 
-			<input type="hidden" name="w" value="" id="w" />
-			<input type="hidden" name="h" value="" id="h" /> 
-			<input type="submit" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" />
-		</form>
-	</div>
-	<hr />
-	<?php 	} ?>
-	<h2>Upload Photo</h2>
+?>
+	<h2>Image</h2>
 	<form name="photo" enctype="multipart/form-data"
-		action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-		Photo <input type="file" name="image" size="30" onchange="readURL(this);" /> 
-		<img id="blah" src="#" alt="your image" />
+		action="" method="post">
+		<h3>Photo</h3>
+		<input type="file" name="image" size="30" onchange="readURL(this);" /> 
+		<img id="blah" src="#" alt="image to upload" />
 			<input type="hidden" name="x1" value="" id="x1" /> 
 			<input type="hidden" name="y1" value="" id="y1" /> 
 			<input type="hidden" name="x2" value="" id="x2" /> 
 			<input type="hidden" name="y2" value="" id="y2" /> 
 		<input type="submit" name="upload" value="Upload" />
+		<div><?php echo($_SESSION['largeImageLocation']) ?> was successfully uploaded.</div>
+		<div><image src="<?php echo($_SESSION['largeImageLocation']) ?>" alt="sucker!" height="80" width="60"/></div>
 	</form>
-<?php } ?>
+  
 <!-- Copyright (c) 2008 http://www.webmotionuk.com -->
 </body>
 </html>

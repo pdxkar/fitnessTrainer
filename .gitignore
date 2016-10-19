@@ -11,3 +11,6 @@ sqlquery.txt
 
 #code library for copy paste stuff
 codeSamples.php
+
+#images uploaded to local directory
+upload_pic/*

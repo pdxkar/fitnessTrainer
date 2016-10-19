@@ -3,7 +3,8 @@
 </div>
 <form action="index.php" method="post">
 	<h2>Enter your new resource</h2><br>
-		Title:<input type="text" size="40" name="resourceTitle"><br>
+	<h3>Title:</h3>
+		<input type="text" size="40" name="resourceTitle"><br>	
 	<h3>Subtext (Author, Artist, Subtitle)</h3>
 		<textarea rows="10" cols="50" name="subtext"></textarea><br>
 	<h3>Description</h3>
