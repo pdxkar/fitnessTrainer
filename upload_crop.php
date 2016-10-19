@@ -227,7 +227,7 @@ if (isset ( $_POST ["upload"] )) {
 
 		if (isset ( $_FILES ['image'] ['name'] )) {
 			
-			//Use the ImageManipulator class to crop the image
+			//Use the ImageManipulator class to crop (and save?) the image
 			$manipulator = new ImageManipulator( $_FILES ['image'] ['tmp_name']);
 			$newImage = $manipulator->crop($x1, $y1, $x2, $y2);
 			$manipulator->save($upload_path . 'cropped-' . $userfile_name);
@@ -239,34 +239,27 @@ if (isset ( $_POST ["upload"] )) {
 			
 			// this file could now has an unknown file extension (we hope it's one of the ones set above!)
 			// At this point $large_image_location is where the image is going to go, not where it currently is
-			$large_image_location = $large_image_location . "." . $file_ext;
+			//$large_image_location = $large_image_location . "." . $file_ext;
 			
 		//	$thumb_image_location = $thumb_image_location . "." . $file_ext;
 			
 			// put the file ext in the session so we know what file to look for once its uploaded
 			$_SESSION ['user_file_ext'] = "." . $file_ext;
-			
-			//move the cropped image(?) to large_image_location
-			//newImage needs to be a string that is the location of the cropped image, not the image it
-			
-			if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
+			$_SESSION["largeImageLocation"]=$large_image_location;
+			//move the cropped(?) image to large_image_location
+			/* if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
 				$_SESSION["largeImageLocation"]=$large_image_location;
-//				echo 'File ' .$large_image_location. ' succesfully copied';
-// 				echo("<script>");
-// 				echo("var x = document.createElement(\"IMG\")");
-// 				echo("x.setAttribute(\"src\", \"sprocket.jpg\")");
-// 				echo("x.setAttribute(\"id\", \"sprocket\")");
-// 				echo("x.setAttribute(\"width\", \"304\")");
-// 				echo("x.setAttribute(\"width\", \"228\")");
-// 				echo("document.body.appendChild(x)");
-// 				echo("$('#sprocket').imgAreaSelect({ x1: 26, y1: 26, x2: 205, y2: 143 })");
-// 				echo("</script>");
-			}
+			} */
 			chmod ( $large_image_location, 0777 );
 			
 			$width = getWidth ( $large_image_location );
 			$height = getHeight ( $large_image_location );
+			
+			$_SESSION["height"]=$height;
+			$_SESSION["width"]=$width;
+			
 			// Scale the image if it is greater than the width set above
+			//is this used?
 			if ($width > $max_width) {
 				$scale = $max_width / $width;
 				$uploaded = resizeImage ( $large_image_location, $width, $height, $scale );
@@ -387,10 +380,9 @@ if (strlen ( $error ) > 0) {
 	echo "<ul><li><strong>Error!</strong></li><li>" . $error . "</li></ul>";
 }
 ?>
-	<h2>Image</h2>
 	<form name="photo" enctype="multipart/form-data"
 		action="" method="post">
-		<h3>Photo</h3>
+		<h3>Image</h3>
 		<input type="file" name="image" size="30" onchange="readURL(this);" /> 
 		<img id="blah" src="#" alt="image to upload" />
 			<input type="hidden" name="x1" value="" id="x1" /> 
@@ -398,10 +390,22 @@ if (strlen ( $error ) > 0) {
 			<input type="hidden" name="x2" value="" id="x2" /> 
 			<input type="hidden" name="y2" value="" id="y2" /> 
 		<input type="submit" name="upload" value="Upload" />
-		<div><?php echo($_SESSION['largeImageLocation']) ?> was successfully uploaded.</div>
-		<div><image src="<?php echo($_SESSION['largeImageLocation']) ?>" alt="sucker!" height="80" width="60"/></div>
+		<?php 
+		if(isset($_SESSION['largeImageLocation'])){
+			echo("<div>Image \"");
+			echo($_SESSION['largeImageLocation']);
+			echo("\" was successfully uploaded.");
+			echo("</div>");
+			echo($_SESSION['height']);
+			echo "<div><image src=\"";
+ 			echo($_SESSION['largeImageLocation']);
+			echo "\" alt=\"sucker!\" height=\"80\" width=\"60\"/></div>";
+		} else {
+			echo("not set");
+		}
+		?>
 	</form>
-  
+  <!-- TODO - incorporate cropped image's height and width into above code so proportions aren't lost -->
 <!-- Copyright (c) 2008 http://www.webmotionuk.com -->
 </body>
 </html>
