@@ -321,13 +321,15 @@ if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
 <script type="text/javascript" src="jquery.imgareaselect.pack.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
-        if (input.files && input.files[0]) {
+         if (input.files && input.files[0]) {
             var reader = new FileReader();
             
             reader.onload = function (e) {
             	//set blah's src to e.target.result
                 $('#blah').attr('src', e.target.result);
-                $('#blah').imgAreaSelect({ x1: 22, y1: 33, x2: 100, y2: 145,
+                //see http://odyniec.net/projects/imgareaselect/examples.html 
+                //for how to dictate a max height and width for the cropped image (maxWidth: 200, max height: 150, x1....
+                $('#blah').imgAreaSelect({ aspectRatio: '5:8', x1: 22, y1: 33, x2: 100, y2: 145,
                     onSelectEnd: function (img, selection) {
                         $('#x1').val(selection.x1);
                         $('#y1').val(selection.y1);
@@ -339,7 +341,7 @@ if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
 
 			//readAsDataURL returns the file as a data url
             reader.readAsDataURL(input.files[0]); 
-        }
+        } 
     }
     </script>
 </head>
@@ -382,13 +384,16 @@ if (strlen ( $error ) > 0) {
 ?>
 	<form name="photo" enctype="multipart/form-data"
 		action="" method="post">
-		<h3>Image</h3>
+		<h2>Enter your new Resource</h2>
+		<h3>Resource Image:</h3>
 		<input type="file" name="image" size="30" onchange="readURL(this);" /> 
+		<br />
 		<img id="blah" src="#" alt="image to upload" />
 			<input type="hidden" name="x1" value="" id="x1" /> 
 			<input type="hidden" name="y1" value="" id="y1" /> 
 			<input type="hidden" name="x2" value="" id="x2" /> 
 			<input type="hidden" name="y2" value="" id="y2" /> 
+		<br />
 		<input type="submit" name="upload" value="Upload" />
 		<?php 
 		if(isset($_SESSION['largeImageLocation'])){
@@ -399,10 +404,8 @@ if (strlen ( $error ) > 0) {
 			echo($_SESSION['height']);
 			echo "<div><image src=\"";
  			echo($_SESSION['largeImageLocation']);
-			echo "\" alt=\"sucker!\" height=\"80\" width=\"60\"/></div>";
-		} else {
-			echo("not set");
-		}
+			echo "\" alt=\"sucker!\" height=\"200\" width=\"144\"/></div>";
+		} 
 		?>
 	</form>
   <!-- TODO - incorporate cropped image's height and width into above code so proportions aren't lost -->

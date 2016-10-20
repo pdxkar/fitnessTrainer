@@ -2,7 +2,6 @@
        <?php include("upload_crop.php"); ?>
 </div>
 <form action="index.php" method="post">
-	<h2>Enter your new resource</h2><br>
 	<h3>Title:</h3>
 		<input type="text" size="40" name="resourceTitle"><br>	
 	<h3>Subtext (Author, Artist, Subtitle)</h3>
