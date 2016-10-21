@@ -1,4 +1,10 @@
 <?php
+/*
+ * Image manipulation class - provides cropping, resampling and canvas resize
+ * Class acquired from https://gist.github.com/philBrown/880506
+ * Last Revision Date: August 9, 2011
+ * Embed script available: <script src="https://gist.github.com/philBrown/880506.js"></script>
+ */
 class ImageManipulator
 {
 	/**
