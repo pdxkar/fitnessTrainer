@@ -213,6 +213,9 @@ class ImageManipulator
 	 */
 	public function save($fileName, $type = IMAGETYPE_JPEG)
 	{
+		print_r("in imageManipulator class, fileName = ");
+		print_r($fileName);
+		
 		$dir = dirname($fileName);
 		if (!is_dir($dir)) {
 			if (!mkdir($dir, 0755, true)) {
