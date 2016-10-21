@@ -19,10 +19,10 @@
  *
  */
 require_once('ImageManipulator.php');
-
 error_reporting ( E_ALL ^ E_NOTICE );
-session_start (); // Do not remove this
-                 // only assign a new timestamp if the session variable is empty
+session_start(); // Do not remove this
+
+// only assign a new timestamp if the session variable is empty
 if (! isset ( $_SESSION ['random_key'] ) || strlen ( $_SESSION ['random_key'] ) == 0) {
 	$_SESSION ['random_key'] = strtotime ( date ( 'Y-m-d H:i:s' ) ); // assign the timestamp to the session variable
 	$_SESSION ['user_file_ext'] = "";
@@ -232,6 +232,7 @@ if (isset ( $_POST ["upload"] )) {
 			$newImage = $manipulator->crop($x1, $y1, $x2, $y2);
 			$manipulator->save($upload_path . 'cropped-' . $userfile_name);
 			
+			$large_image_location = $upload_path . $large_image_name . $_SESSION ['user_file_ext'];
 			//$large_image_location = $upload_path . $large_image_name . $_SESSION ['user_file_ext'];
 			//$large_image_prefix = "resize_"; // The prefix name to large image
 			//$thumb_image_prefix = "thumbnail_"; // The prefix name to the thumb image
@@ -247,9 +248,9 @@ if (isset ( $_POST ["upload"] )) {
 			$_SESSION ['user_file_ext'] = "." . $file_ext;
 			$_SESSION["largeImageLocation"]=$large_image_location;
 			//move the cropped(?) image to large_image_location
-			/* if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
+			if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
 				$_SESSION["largeImageLocation"]=$large_image_location;
-			} */
+			} 
 			chmod ( $large_image_location, 0777 );
 			
 			$width = getWidth ( $large_image_location );
@@ -272,7 +273,7 @@ if (isset ( $_POST ["upload"] )) {
 				unlink ( $thumb_image_location );
 			} */
 		}
-		// Refresh the page to show the new uploaded image (?) <-it's not showing the image
+		// Refresh the page to show the new uploaded image (?) 
 		header ( "location:" . $_SERVER ["PHP_SELF"] );
 		exit ();
 	}
@@ -388,7 +389,7 @@ if (strlen ( $error ) > 0) {
 		<h3>Resource Image:</h3>
 		<input type="file" name="image" size="30" onchange="readURL(this);" /> 
 		<br />
-		<img id="blah" src="#" alt="image to upload" />
+		<img id="blah" src="#" alt="" />
 			<input type="hidden" name="x1" value="" id="x1" /> 
 			<input type="hidden" name="y1" value="" id="y1" /> 
 			<input type="hidden" name="x2" value="" id="x2" /> 
@@ -396,14 +397,13 @@ if (strlen ( $error ) > 0) {
 		<br />
 		<input type="submit" name="upload" value="Upload" />
 		<?php 
-		if(isset($_SESSION['largeImageLocation'])){
+		if(isset($_SESSION['largeImageLocation'])){			
 			echo("<div>Image \"");
 			echo($_SESSION['largeImageLocation']);
 			echo("\" was successfully uploaded.");
 			echo("</div>");
-			echo($_SESSION['height']);
 			echo "<div><image src=\"";
- 			echo($_SESSION['largeImageLocation']);
+			echo($_SESSION['largeImageLocation']);
 			echo "\" alt=\"sucker!\" height=\"200\" width=\"144\"/></div>";
 		} 
 		?>

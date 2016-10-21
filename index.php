@@ -41,7 +41,7 @@ session_start ();
 <body>
 	<div id="header">
        <?php include("header.inc.php"); ?>
-  </div>
+  	</div>
 	<div id="content">
 	  <?php
 			if (! isset ( $_REQUEST ['content'] ))
@@ -50,18 +50,21 @@ session_start ();
 				include ("resourceDescription.inc.php");
 			}
 			?>
-  </div>
+ 	</div>
 	<div id="main">
       <?php
-						if (! isset ( $_REQUEST ['content'] ))
+						if (! isset ( $_REQUEST ['content'] )){
+							//$_SESSION['largeImageLocation'] = "";
+							unset($_SESSION['largeImageLocation']);
 							include ("main.inc.php");
+						}
 						else {
 							$content = $_REQUEST ['content'];
 							$nextpage = $content . ".inc.php";
 							include ($nextpage);
 						}
 						?>
-  </div>
+  	</div>
 	<div id="footer">
          <?php include("footer.inc.php"); ?>
   </div>
