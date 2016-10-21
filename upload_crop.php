@@ -248,9 +248,9 @@ if (isset ( $_POST ["upload"] )) {
 			$_SESSION ['user_file_ext'] = "." . $file_ext;
 			$_SESSION["largeImageLocation"]=$large_image_location;
 			//move the cropped(?) image to large_image_location
-			if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
+/* 			if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
 				$_SESSION["largeImageLocation"]=$large_image_location;
-			} 
+			}  */
 			chmod ( $large_image_location, 0777 );
 			
 			$width = getWidth ( $large_image_location );

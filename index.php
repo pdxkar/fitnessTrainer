@@ -54,7 +54,7 @@ session_start ();
 	<div id="main">
       <?php
 						if (! isset ( $_REQUEST ['content'] )){
-							//$_SESSION['largeImageLocation'] = "";
+							$_SESSION['largeImageLocation'] = "";
 							unset($_SESSION['largeImageLocation']);
 							include ("main.inc.php");
 						}
