@@ -1,3 +1,4 @@
+<h1>Enter New Resource</h1>
 <div id="uploadImageDiv">
     <?php include("upload_crop.php"); ?>
 </div>

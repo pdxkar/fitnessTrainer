@@ -5,6 +5,7 @@ $resourceId =  $_POST['resourceId'];
 $featureTitle = htmlspecialchars($_POST['featureTitle']);
 $featureDesc = htmlspecialchars($_POST['featureDesc']);
 $featureUrl = $_POST['featureUrl'];
+$featureImageUrl = $_POST['featureImageUrl'];
 
 if (!isset($_SESSION['valid_recipe_user'])) {
 	echo "<h2>Sorry, you must be logged in to post an essay.</h2><br>\n";
@@ -19,7 +20,7 @@ if (!isset($_SESSION['valid_recipe_user'])) {
 		'featureTitle' => $featureTitle, 
 		'featureDesc' => $featureDesc, 
 		'featureUrl' => $featureUrl,
-		'featureImageUrl' => featureImageUrl
+		'featureImageUrl' => $featureImageUrl
 	);
 			
 	$isFeatureAdded = $st->execute($array);

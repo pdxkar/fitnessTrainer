@@ -309,8 +309,7 @@ if (strlen ( $error ) > 0) {
 ?>
 	<form name="photo" enctype="multipart/form-data"
 		action="" method="post">
-		<h2>Enter your new Resource</h2>
-		<h3>Resource Image:</h3>
+		<h3>Image</h3>
 		<input type="file" name="image" size="30" onchange="readURL(this);" /> 
 		<br />
 		<img id="blah" src="#" alt="" />
