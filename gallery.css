@@ -120,6 +120,29 @@ html, body {
 	line-height: 20px;
 }
 
+.thistledownWelcome {
+	width: 90%; /*  % width of the containing block */
+	height: 250px;  /* height of the welcome box is hard coded here...TODO change to adjust with photo viewer height */
+	margin: 2em auto;
+	margin-left: 40px;
+	padding: 10px 30px;
+	background-color: #FDF5E6 /* OldLace */
+}
+
+.thistledownWelcome h1 {
+	margin: 0;
+	color: #555; /* dark grey */
+}
+
+.thistledownWelcome p {
+	font-family: Papyrus, fantasy;
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
 #testFooter {
 	clear: both;
 	text-align: center;
@@ -159,3 +182,24 @@ html, body {
 	font-weight: 500;
 	line-height: 26.4px;
 }
+
+#thistledownHeading {
+	height: 100px;
+	/* background-image: url(/images/thistledownBanner.png); */
+	background-repeat: no-repeat;
+	background-position: top right;
+	border-bottom: 1px solid #E2EAEF; /* light blue */
+	background-image: url(thistledownBanner.png);
+	width: 100%;
+}
+
+#thistledownHeading h1 {
+	padding: 30px;
+	font-family: Papyrus, fantasy;
+	font-size: 40px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+

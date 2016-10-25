@@ -24,7 +24,7 @@ session_start(); // Do not remove this
 
 // only assign a new timestamp if the session variable is empty
 if (! isset ( $_SESSION ['random_key'] ) || strlen ( $_SESSION ['random_key'] ) == 0) {
-	print_r("assign new timestamp if sv is empty");
+	print_r("assign new timestamp if session variable is empty");
 	echo("<br />");
 	$_SESSION ['random_key'] = strtotime ( date ( 'Y-m-d H:i:s' ) ); // assign the timestamp to the session variable
 	$_SESSION ['user_file_ext'] = "";
@@ -37,11 +37,7 @@ $upload_dir = "upload_pic"; // The directory for the images to be saved in
 $upload_path = $upload_dir . "/"; // The path to where the image will be saved
 $large_image_prefix = "cropped-"; // The prefix name to cropped image
 
-//$thumb_image_prefix = "thumbnail_"; // The prefix name to the thumb image
-//$large_image_name = $large_image_prefix . $_SESSION ['random_key']; // New name of the large image (append the timestamp to the filename)
-//$large_image_name = $large_image_prefix . $_FILES ['image'] ['name']; // New name of the large image (append the timestamp to the filename)
 $large_image_name = $large_image_prefix . $_SESSION ['random_key'] . "-" . $_FILES ['image'] ['name']; // New name of the large image (append the timestamp to the filename)
-//$thumb_image_name = $thumb_image_prefix . $_SESSION ['random_key']; // New name of the thumbnail image (append the timestamp to the filename)
 
 $max_file = "3"; // Maximum file size in MB
 $max_width = "500"; // Max width allowed for the large image
@@ -118,14 +114,8 @@ function getWidth($image) {
 	return $width;
 }
 
-// Image Locations
-//should this be here? (see 242)
+//Image Locations
 $large_image_location = $upload_path . $large_image_name . $_SESSION ['user_file_ext'];
-
-print_r("large image location on line 164 = ");
-print_r($large_image_location);
-echo("<br />");
-//$thumb_image_location = $upload_path . $thumb_image_name . $_SESSION ['user_file_ext'];
 
 // Create the upload directory with the right permissions if it doesn't exist
 if (! is_dir ( $upload_dir )) {
@@ -138,15 +128,10 @@ if (! is_dir ( $upload_dir )) {
 if (file_exists ( $large_image_location )) {
 	$large_photo_exists = "<img src=\"" . $upload_path . $large_image_name . $_SESSION ['user_file_ext'] . "\" alt=\"Large Image\"/>";
 } else {
-	print_r("if file exists..in the else ");
-	echo("<br />");
 	$large_photo_exists = "";
 }
 
 if (isset ( $_POST ["upload"] )) {
-	
-	print_r("here i am");
-	echo("<br />");
 	
 	// Get the new coordinates to crop the image.
 	$x1 = $_POST ["x1"];
@@ -156,33 +141,21 @@ if (isset ( $_POST ["upload"] )) {
 	$w = $_POST ["w"];  //I don't think this is used
 	$h = $_POST ["h"];  //I don't think this is used
 	
-	print_r("x1 = ");
-	print_r($x1);
-	echo("<br />");
-	
-	//When a file is uploaded (by pushing the "upload" button on the form), it gets stored in
-	//a temporary area on the server until it is moved. The file has to be moved from that area,
-	//or it will be destroyed. In the meantime, the $_FILES[] superglobal array is filled up with
-	//data about the uploaded file.
-	// Get the file information from the server:
+//When a file is uploaded (by pushing the "upload" button on the form), it gets stored in
+//a temporary area on the server until it is moved. The file has to be moved from that area,
+//or it will be destroyed. In the meantime, the $_FILES[] superglobal array is filled up with
+//data about the uploaded file.
+// Get the file information from the server:
 
-	//$_FILES ['image'] ['name'] = original name of file before it was uploaded including extension (.jpg, .png etc)
-	//$_FILES ['image'] ['tmp_name'] = location of temporary file on server
-	print_r("files, image, name = ");
-	print_r($_FILES ['image'] ['name']);
-	echo("<br />"); 
-
+	//$_FILES ['image'] ['name'] => original name of file before it was uploaded including extension (.jpg, .png etc)
+	//$_FILES ['image'] ['tmp_name'] => location of temporary file on server
 	$userfile_name = $_FILES ['image'] ['name'];
 	$userfile_tmp = $_FILES ['image'] ['tmp_name'];
 	$userfile_size = $_FILES ['image'] ['size'];
 	$userfile_type = $_FILES ['image'] ['type'];
 	$filename = basename ( $_FILES ['image'] ['name'] );
 	$file_ext = strtolower ( substr ( $filename, strrpos ( $filename, '.' ) + 1 ) );
-	
-	print_r("userfilename = ");
-	print_r($userfile_name);
-	echo("<br />"); 
-	
+
 	// Only process if the file is a JPG, PNG or GIF and below the allowed limit
 	if ((! empty ( $_FILES ["image"] )) && ($_FILES ['image'] ['error'] == 0)) {
 		
@@ -211,42 +184,16 @@ if (isset ( $_POST ["upload"] )) {
 			//Use the ImageManipulator class to crop (and save?) the image
 			$manipulator = new ImageManipulator( $_FILES ['image'] ['tmp_name']);
 			$newImage = $manipulator->crop($x1, $y1, $x2, $y2);
-			//$manipulator->save($upload_path . 'cropped-' . $userfile_name);
-			//$large_image_prefix = "cropped-";
-			//$_FILES ['image'] ['name'] = original name of file before it was uploaded including extension (.jpg, .png etc)
-			//$large_image_name = $large_image_prefix . $_SESSION ['random_key'] . "-" . $_FILES ['image'] ['name']; 
-			//$manipulator->save($upload_path . 'cropped-' . $large_image_name);
 			$manipulator->save($upload_path . $large_image_name);
 			
 			$large_image_location = $upload_path . $large_image_name;
-			//$large_image_location = $upload_path . $large_image_name . $_SESSION ['user_file_ext'];
-			//$large_image_prefix = "resize_"; // The prefix name to large image
-			//$thumb_image_prefix = "thumbnail_"; // The prefix name to the thumb image
-			//$large_image_name = $large_image_prefix . $_SESSION ['random_key']; // New name of the large image (append the timestamp to the filename)
 			
-			// this file could now has an unknown file extension (we hope it's one of the ones set above!)
-			// At this point $large_image_location is where the image is going to go, not where it currently is
-			//$large_image_location = $large_image_location . "." . $file_ext;
-			
-		//	$thumb_image_location = $thumb_image_location . "." . $file_ext;
-		
-			print_r("large_image_location on line 265 = ");
-			print_r($large_image_location);
-			echo("<br />");
-			
-			// put the file ext in the session so we know what file to look for once its uploaded (???)
+			// put the file ext in the session so we know what file to look for once its uploaded (??? is this used ???)
 			$_SESSION ['user_file_ext'] = "." . $file_ext;
 			
-			//should this line be here?
 			//assigns the session variable largeimagelocation to the location of the cropped image
 			$_SESSION["largeImageLocation"]=$large_image_location;
 			
-			//move the cropped(?) image to large_image_location
-			//*BUG* this move() actually overwrites the cropped photo with the uncropped image in the temp folder
-// 			if (move_uploaded_file ( $userfile_tmp, $large_image_location )){
-// 				$_SESSION["largeImageLocation"]=$large_image_location;
-// 			} 
-
 			chmod ( $large_image_location, 0777 );
 			
 			$width = getWidth ( $large_image_location );
@@ -271,6 +218,7 @@ if (isset ( $_POST ["upload"] )) {
 	}
 }
 
+//is this used??
 if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
 	print_r("Whhhhaaaaaaattt?");
 	echo("<br />");

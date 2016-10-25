@@ -51,38 +51,10 @@ function setPhoto(){
     function (){
       $("#photo img").attr("src", newPhoto); 
     });
-   $("#photo img").css({width:"91%",height:"auto"}); 
-
-	
-   
+   $("#photo img").css({width:"91%",height:"auto"});   
   $("#photo img").fadeTo(500, 1);
   return false;
 }
-
-
-
-
-
-/* function myFunction(){
-  var maxHeight = Math.max($(document).height(), $(window).height());
-  alert(maxHeight); 
-  $(".tempWelcome").css({height:maxHeight}); 
-} */
-
-/* $('#topGallery img').each(function() {
-	if( this.complete ) {
-	    imageLoaded.call( this );
-	} else {
-	    $(this).one('load', imageLoaded);
-	}
-	}); */
-
-/* 	$("#photo img").load(function(){
-		  alert("ginko!");
-	/* 		  var maxHeight = Math.max($(document).height(), $(window).height());
-		  alert(maxHeight); 
-		  $(".tempWelcome").css({height:maxHeight});  */
-	//}); */
 
 $(document).ready(function(){
   addImages();
@@ -112,6 +84,7 @@ $(document).ready(function(){
 		<h1>Knot Just a Bear Chainsaw Carvings</h1>
 	</div>
 	<!-- wrapper containing welcome box and viewer box -->
+	<!-- REmoving the hash below totally f-s up the page.  TODO what's going on? -->
 	<div id="#welcomeAndViewerWrapper">
 		<div class='tempWelcome'>
 	  		<?php
@@ -147,11 +120,7 @@ $(document).ready(function(){
 				<img src="" />
 				<script>
 				$("#photo img").load(function(){
-				  //var maxHeight = Math.max($(document).height(), $(window).height());
-				 // alert(maxHeight); 
-				//  $(".tempWelcome").css({height:maxHeight});  
 					var myHeight = $("#photo img").height();
-					alert(myHeight);
 					$(".tempWelcome").css({height:myHeight+180});  
 				}); 
 				</script>
@@ -159,7 +128,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div id="footer">
-		<h2>&#169; 2016 Thistledown Software Company</h2>
+		<h2><a href="thistledownSoftwareCompany.inc.php">&#169; 2016 Thistledown Software Company</a></h2>
 	</div>
 </body>
 </html>

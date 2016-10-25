@@ -12,14 +12,12 @@
 			echo "<li class=\"dropdown\">";
 			echo "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Posts <b class=\"caret\"></b></a>";
 			echo "<ul class=\"dropdown-menu\">";
-			echo "<li><a href=\"testGallery.inc.php?\">See Test Gallery</a></li>";
 			echo "<li><a href=\"newresource.inc.php?\">Add Resource</a></li>";
 			echo "<li><a href=\"newfeature.inc.php?\">Add Feature</a></li>";
 			echo "<li><a href=\"newessay.inc.php?\">Add Essay</a></li>";
-			echo "<li><a href=\"upload_crop.inc.php?\">upload photo demo</a></li>";
-			echo "<li><a href=\"form.inc.php?\">Image Form</a></li>";
+			echo "<li><a href=\"testGallery.inc.php?\">Test Gallery</a></li>";
 			echo "<li class=\"divider\"></li>";
-			echo "<li><a href=\"#\">Trash</a></li>";
+			echo "<li><a href=\"thistledownSoftwareCompany.inc.php\">Thistledown Software Company</a></li>";
 			echo "</ul>";
 			echo "</li>";
 			echo "<li class=\"dropdown pull-right\">";
@@ -30,7 +28,7 @@
 			echo "<ul class=\"dropdown-menu\">";
 			echo "<li><a href=\"logout.inc.php?\">Logout</a></li>";
 			echo "<li class=\"divider\"></li>";
-			echo "<li><a href=\"#\">SettingsXXX</a></li>";
+			echo "<li><a href=\"thistledownSoftwareCompany.inc.php\">Thistledown Software Company</a></li>";
 			echo "</ul>";
 			echo "</li>";
 			echo "</ul>";
@@ -38,6 +36,14 @@
 		//if not logged in	
 			echo "<ul class=\"nav nav-pills\">";
 			echo "<li class=\"active\"><a href=\"index.php?\">Home</a></li>";
+			echo "<li class=\"dropdown\">";
+			echo "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Posts <b class=\"caret\"></b></a>";
+			echo "<ul class=\"dropdown-menu\">";
+			echo "<li><a href=\"testGallery.inc.php?\">Test Gallery</a></li>";
+			echo "<li class=\"divider\"></li>";
+			echo "<li><a href=\"thistledownSoftwareCompany.inc.php\">Thistledown Software Company</a></li>";
+			echo "</ul>";
+			echo "</li>";
 			echo "<ul class=\"nav navbar-nav navbar-right\">";
 			echo "<li><a href=\"login.inc.php?\">Login</a></li>";
 			echo "<li><a href=\"register.inc.php?\">Register</a></li>";
