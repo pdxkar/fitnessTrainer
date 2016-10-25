@@ -22,13 +22,11 @@ require_once('ImageManipulator.php');
 error_reporting ( E_ALL ^ E_NOTICE );
 session_start(); // Do not remove this
 
-// only assign a new timestamp if the session variable is empty
-if (! isset ( $_SESSION ['random_key'] ) || strlen ( $_SESSION ['random_key'] ) == 0) {
-	print_r("assign new timestamp if session variable is empty");
-	echo("<br />");
+//generate random key every time an image is uploaded so each large_image_location is unique, 
+//even if the same image is uploaded twice
 	$_SESSION ['random_key'] = strtotime ( date ( 'Y-m-d H:i:s' ) ); // assign the timestamp to the session variable
 	$_SESSION ['user_file_ext'] = "";
-}
+
 // ########################################################################################################
 // CONSTANTS #
 // You can alter the options below #
