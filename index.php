@@ -10,17 +10,6 @@ session_start ();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<!-- sources include: 
-  http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
-  http://odyniec.net/projects/imgareaselect/
-  http://odyniec.net/projects/imgareaselect/examples.html
-  http://odyniec.net/projects/imgareaselect/usage.html
-  http://www.webmotionuk.com/php-jquery-image-upload-and-crop/
-  http://www.codeforest.net/upload-crop-and-resize-images-with-php
-  http://www.codeforest.net/html5-image-upload-resize-and-crop
-  http://www.phpforkids.com/php/php-forms-file-uploads.php
-  http://www.justinphillips.co/design/html/upload-crop-and-resize-images-with-php
-  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.imgareaselect.pack.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"

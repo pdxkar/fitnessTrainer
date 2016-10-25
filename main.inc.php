@@ -30,37 +30,6 @@ while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
 	
 	$resourceTypeName = $row ['resourceTypeName'];
 	
-/* 	// for each resource, get its essay
-	$stEssay = $app ['pdo']->prepare ( 'SELECT essayDate, essayTitle, essayText from essays where resourceId = :resourceId' );
-	
-	$array = array (
-			'resourceId' => $resourceId 
-	);
-	
-	$success = $stEssay->execute ( $array );
-	
-	$resourceRowHasEssay = $stEssay->fetch ( PDO::FETCH_ASSOC );
-	
-	$essayDate = $resourceRowHasEssay ['essayDate'];
-	$essayTitle = $resourceRowHasEssay ['essayTitle'];
-	$essayText = $resourceRowHasEssay ['essayText'];
-	
-	// for each resource, get all of its features
-	$stmtx = $app ['pdo']->prepare ( 'SELECT featureId,featureTitle,featureDesc,featureUrl from features where resourceId = :resourceId' );
-	
-	$array = array (
-			'resourceId' => $resourceId 
-	);
-	
-	$success = $stmtx->execute ( $array );
-	
-	$resourceRowHasFeatures = $stmtx->fetch ( PDO::FETCH_ASSOC );
-	
-	$featureId = $resourceRowHasFeatures ['featureId'];
-	$featureTitle = $resourceRowHasFeatures ['featureTitle'];
-	$featureDesc = $resourceRowHasFeatures ['featureDesc'];
-	$featureUrl = $resourceRowHasFeatures ['featureUrl']; */
-	
 	echo "<div id=\"resourceWrapper\">
 	<div id=\"descBox\">
 	<div id=\"toplineWrapper\">

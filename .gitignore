@@ -14,3 +14,5 @@ codeSamples.php
 
 #images uploaded to local directory
 upload_pic/*
+*.jpg
+*.png

@@ -12,13 +12,14 @@
 			echo "<li class=\"dropdown\">";
 			echo "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Posts <b class=\"caret\"></b></a>";
 			echo "<ul class=\"dropdown-menu\">";
+			echo "<li><a href=\"testGallery.inc.php?\">See Test Gallery</a></li>";
 			echo "<li><a href=\"newresource.inc.php?\">Add Resource</a></li>";
 			echo "<li><a href=\"newfeature.inc.php?\">Add Feature</a></li>";
 			echo "<li><a href=\"newessay.inc.php?\">Add Essay</a></li>";
 			echo "<li><a href=\"upload_crop.inc.php?\">upload photo demo</a></li>";
 			echo "<li><a href=\"form.inc.php?\">Image Form</a></li>";
 			echo "<li class=\"divider\"></li>";
-			echo "<li><a href=\"#\">TrashXXX</a></li>";
+			echo "<li><a href=\"#\">Trash</a></li>";
 			echo "</ul>";
 			echo "</li>";
 			echo "<li class=\"dropdown pull-right\">";

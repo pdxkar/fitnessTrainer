@@ -1,0 +1,13 @@
+Image Upload (imgareaselect): 
+	http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
+	http://odyniec.net/projects/imgareaselect/
+	http://odyniec.net/projects/imgareaselect/examples.html
+	http://odyniec.net/projects/imgareaselect/usage.html
+	http://www.webmotionuk.com/php-jquery-image-upload-and-crop/
+	http://www.codeforest.net/upload-crop-and-resize-images-with-php
+	http://www.codeforest.net/html5-image-upload-resize-and-crop
+	http://www.phpforkids.com/php/php-forms-file-uploads.php
+	http://www.justinphillips.co/design/html/upload-crop-and-resize-images-with-php
+
+Fonts
+	http://www.cssfontstack.com/Papyrus
