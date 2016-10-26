@@ -27,17 +27,9 @@ $dbopts["port"] = "localhost";
 $dbopts["user"] = "test";
 $dbopts["pass"] = "test";
 
-//dev settings (RECIPE):
-// $app->register(new Herrera\Pdo\PdoServiceProvider(),
-// 		array(
-// 				'pdo.dsn' => 'mysql:dbname=recipe',
-// 				'pdo.port' => $dbopts["port"],
-// 				'pdo.username' => $dbopts["user"],
-// 				'pdo.password' => $dbopts["pass"]
-// 		)
-// 		);
-
 //dev settings (DISTILLERY):
+//db for dev and demo:  'pdo.dsn' => 'mysql:dbname=distillerydemo',
+//db for prod:  		'pdo.dsn' => 'mysql:dbname=distillery',
 $app->register(new Herrera\Pdo\PdoServiceProvider(),
 		array(
 				'pdo.dsn' => 'mysql:dbname=distillerydemo',

@@ -5,6 +5,7 @@ $essaytitle = htmlspecialchars($_POST['essaytitle']);
 $essaytext = htmlspecialchars($_POST['essaytext']);
 $resourceid = $_POST['resourceid'];
 $essaydate = date("Y-m-d");
+$essayImageUrl = $_POST['essayImageUrl'];
 
 if (!isset($_SESSION['valid_recipe_user'])) {
 	echo "<h2>Sorry, you must be logged in to post an resource.</h2><br>\n";
@@ -12,13 +13,14 @@ if (!isset($_SESSION['valid_recipe_user'])) {
 } else {
 	$userid = $_SESSION['valid_recipe_user'];
 
-	$st = $app['pdo']->prepare('INSERT INTO essays (essayTitle, essayText, resourceId, essayDate) VALUES (:essaytitle, :essaytext, :resourceid, :essaydate)');
+	$st = $app['pdo']->prepare('INSERT INTO essays (essayTitle, essayText, resourceId, essayDate, essayImageUrl) VALUES (:essaytitle, :essaytext, :resourceid, :essaydate, :essayImageUrl)');
 	
 	$array = array(
 			'essaytitle' => $essaytitle,
 			'essaytext' => $essaytext,
 			'resourceid' => $resourceid,
-			'essaydate' => $essaydate
+			'essaydate' => $essaydate,
+			'essayImageUrl' => $essayImageUrl
 	);
 
 	$isEssayAdded = $st->execute($array);

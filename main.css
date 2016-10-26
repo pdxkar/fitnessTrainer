@@ -105,13 +105,13 @@ h4 {
 	min-height: 175px;
 }
 
-#featureFullWrapper{
+#featureFullWrapper, #essayFullWrapper{
 	border: 1px solid #B0C4DE;
 	padding: 30px; /*does nothing?*/
 	min-height: 1175px;	
 }
 
-#featureFullDescBox {
+#featureFullDescBox, #essayFullDescBox {
 	width: 80%;
 	height: 160px;
 	float: left;
