@@ -11,15 +11,6 @@ $featureDesc = $_GET['featureDesc'];
 $featureUrl = $_GET['featureUrl'];
 $featureImageUrl = $_GET['featureImageUrl'];
 
-/* test values below */
-/* $essayId = 6;
-$essayDate = '2016-10-25';
-$essayTitle = "testing";
-$essayText = "success joseph stalin";
-$essayImageUrl = "upload_pic/cropped-1476982117-seaTurtle.jpg"; */
-
-
-
 // for the feature, get its essay
 $st = $app ['pdo']->prepare ( 'SELECT essayId,essayDate,essayTitle,essayText,resourceId,featureId,essayImageUrl from essays where featureId = :featureId' );
 
