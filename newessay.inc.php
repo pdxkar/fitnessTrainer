@@ -9,6 +9,8 @@
 		<textarea rows="10" cols="50" name="essaytext"></textarea><br>
 	<h3>Resource Id</h3>
 		<textarea rows="5" cols="50" name="resourceid"></textarea><br>
+	<h3>Feature Id</h3>
+		<textarea rows="5" cols="50" name="featureid"></textarea><br>
 		<input type="submit" value="Submit">
 		<input type="hidden" name="content" value="addessay">
 	<h3>Image location</h3>

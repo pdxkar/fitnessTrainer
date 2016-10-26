@@ -4,6 +4,7 @@ include 'db.inc.php';
 $essaytitle = htmlspecialchars($_POST['essaytitle']);
 $essaytext = htmlspecialchars($_POST['essaytext']);
 $resourceid = $_POST['resourceid'];
+$featureid = $_POST['featureid'];
 $essaydate = date("Y-m-d");
 $essayImageUrl = $_POST['essayImageUrl'];
 
@@ -13,12 +14,13 @@ if (!isset($_SESSION['valid_recipe_user'])) {
 } else {
 	$userid = $_SESSION['valid_recipe_user'];
 
-	$st = $app['pdo']->prepare('INSERT INTO essays (essayTitle, essayText, resourceId, essayDate, essayImageUrl) VALUES (:essaytitle, :essaytext, :resourceid, :essaydate, :essayImageUrl)');
+	$st = $app['pdo']->prepare('INSERT INTO essays (essayTitle, essayText, resourceId, featureId, essayDate, essayImageUrl) VALUES (:essaytitle, :essaytext, :resourceid, :featureid, :essaydate, :essayImageUrl)');
 	
 	$array = array(
 			'essaytitle' => $essaytitle,
 			'essaytext' => $essaytext,
 			'resourceid' => $resourceid,
+			'featureid' => $featureid,
 			'essaydate' => $essaydate,
 			'essayImageUrl' => $essayImageUrl
 	);
