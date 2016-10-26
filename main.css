@@ -208,7 +208,7 @@ h4 {
 	background-color: #FDF5E6 /* OldLace */
 }
 
-.welcome h1, .resourceOverview h1 /* "Latest News */ {
+.welcome h1, .resourceOverview h1 {
 	margin: 0;
 	color: #555; /* dark grey */
 }
