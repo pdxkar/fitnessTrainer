@@ -13,6 +13,7 @@
 			echo "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Posts <b class=\"caret\"></b></a>";
 			echo "<ul class=\"dropdown-menu\">";
 			echo "<li><a href=\"newresource.inc.php?\">Add Resource</a></li>";
+			echo "<li><a href=\"selectResourceToEdit.inc.php?\">Edit Resource</a></li>";
 			echo "<li><a href=\"newfeature.inc.php?\">Add Feature</a></li>";
 			echo "<li><a href=\"newessay.inc.php?\">Add Essay</a></li>";
 			echo "<li><a href=\"testGallery.inc.php?\">Test Gallery</a></li>";
