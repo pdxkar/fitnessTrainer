@@ -30,12 +30,6 @@ echo "$id";
 echo " \"";
 echo "><br>";
 
-echo "<h4>Testing:</h4>";
-echo "<input type=\"text\" size=\"50\" name=\"id\" value=\"";
-echo "$id";	
-echo " \"";
-echo "><br>";
-
 echo "<h4>Title:</h4>";
 echo "<input type=\"text\" size=\"50\" name=\"resourceTitle\" value=\"";
 echo "$resourceTitle";	
