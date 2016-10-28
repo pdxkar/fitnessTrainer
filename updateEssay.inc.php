@@ -29,31 +29,31 @@ echo "$id";
 echo " \"";
 echo "><br>";
 
-echo "<h4>Resource Id:</h4>";
+echo "<h4>Essay Date</h4>";
 echo "<input type=\"text\" size=\"50\" name=\"essayDate\" value=\"";
 echo "$essayDate";	
 echo " \"";
 echo "><br>";
 
-echo "<h3>Feature Title (Author, Artist, Subtitle)</h3>";
+echo "<h3>Essay Title</h3>";
 echo "<input type=\"text\" size=\"50\" name=\"essayTitle\" value=\"";
 echo "$essayTitle";
 echo " \"";
 echo "><br>";
 
-echo "<h3>Feature Subtext</h3>";
+echo "<h3>Essay Text</h3>";
 echo "<input type=\"text\" size=\"50\" name=\"essayText\" value=\"";
 echo "$essayText";
 echo " \"";
 echo "><br>";
 
-echo "<h3>Feature Description</h3>";
+echo "<h3>Resource Id</h3>";
 echo "<input type=\"text\" size=\"50\" name=\"resourceId\" value=\"";
 echo "$resourceId";
 echo " \"";
 echo "><br>";
 
-echo "<h3>Feature Url</h3>";
+echo "<h3>Feature Id</h3>";
 echo "<input type=\"text\" size=\"50\" name=\"featureId\" value=\"";
 echo "$featureId";
 echo " \"";
