@@ -13,24 +13,6 @@ if (!isset($_SESSION['valid_recipe_user'])) {
 	echo "<a href=\"index.php?content=login\">Please login to update a feature.</a><br>\n";
 } else {
 	$userid = $_SESSION['valid_recipe_user'];
-	echo "featureId = ";
-	echo "$featureId";
-	echo "<br />";
-	echo "resourceId = ";
-	echo "$resourceId";
-	echo "<br />";
-	echo "featureTitle = ";
-	echo "$featureTitle";
-	echo "<br />";
-	echo "featureSubtext = ";
-	echo "$featureSubtext";
-	echo "<br />";
-	echo "featureDesc = ";
-	echo "$featureDesc";
-	echo "<br />";
-	echo "featureUrl = ";
-	echo "$featureUrl";
-	echo "<br />";
 
 //get resource to update by id
 $st = $app['pdo']->prepare('UPDATE features SET resourceId = :resourceId, featureTitle = :featureTitle, featureSubtext = :featureSubtext, featureDesc = :featureDesc, featureUrl = :featureUrl where featureId = :featureId' );

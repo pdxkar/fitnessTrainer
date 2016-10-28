@@ -17,6 +17,7 @@
 			echo "<li><a href=\"newfeature.inc.php?\">Add Feature</a></li>";
 			echo "<li><a href=\"selectFeatureToEdit.inc.php?\">Edit Feature</a></li>";
 			echo "<li><a href=\"newessay.inc.php?\">Add Essay</a></li>";
+			echo "<li><a href=\"selectEssayToEdit.inc.php?\">Edit Essay</a></li>";
 			echo "<li><a href=\"testGallery.inc.php?\">Test Gallery</a></li>";
 			echo "<li class=\"divider\"></li>";
 			echo "<li><a href=\"thistledownSoftwareCompany.inc.php\">Thistledown Software Company</a></li>";
