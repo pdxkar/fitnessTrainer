@@ -21,7 +21,6 @@
 require_once('ImageManipulator.php');
 error_reporting ( E_ALL ^ E_NOTICE );
 session_start(); // Do not remove this
-
 //generate random key every time an image is uploaded so each large_image_location is unique, 
 //even if the same image is uploaded twice
 	$_SESSION ['random_key'] = strtotime ( date ( 'Y-m-d H:i:s' ) ); // assign the timestamp to the session variable
@@ -130,7 +129,6 @@ if (file_exists ( $large_image_location )) {
 }
 
 if (isset ( $_POST ["upload"] )) {
-	
 	// Get the new coordinates to crop the image.
 	$x1 = $_POST ["x1"];
 	$y1 = $_POST ["y1"];
@@ -176,24 +174,43 @@ if (isset ( $_POST ["upload"] )) {
 	}
 	// Everything is ok, so we can upload the image.
 	if (strlen ( $error ) == 0) {
-
+		error_log("*****************************************test3*************************");
 		if (isset ( $_FILES ['image'] ['name'] )) {
-			
 			//Use the ImageManipulator class to crop (and save?) the image
 			$manipulator = new ImageManipulator( $_FILES ['image'] ['tmp_name']);
-			$newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+			$manipulator->crop($x1, $y1, $x2, $y2);
+			//what the $%^& is the save function doing???
 			$manipulator->save($upload_path . $large_image_name);
-			
 			$large_image_location = $upload_path . $large_image_name;
-			
 			// put the file ext in the session so we know what file to look for once its uploaded (??? is this used ???)
 			$_SESSION ['user_file_ext'] = "." . $file_ext;
 			
 			//assigns the session variable largeimagelocation to the location of the cropped image
 			$_SESSION["largeImageLocation"]=$large_image_location;
-			
+			//and makes the location accessible
 			chmod ( $large_image_location, 0777 );
 			
+			//put the image into an AWS s3 bucket for permanent storage and capture this
+			//permanent location in the session variable "largeImageLocation"
+			require('../vendor/autoload.php');
+			//read the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
+			$s3 = Aws\S3\S3Client::factory();
+			$bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var found in env!');
+			//TODO should I have this if here in some capacity, or is it redundant?
+		//	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset( $_FILES ['image'] ['name']) && $_FILES['image']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['image']['tmp_name'])) {
+				// FIXME: add more validation, e.g. using ext/fileinfo
+				try {
+					// FIXME: do not use 'name' for upload (that's the original filename from the user's computer)
+					$upload = $s3->upload($bucket, $_FILES['image']['name'], fopen($_SESSION["largeImageLocation"], 'rb'), 'public-read');
+					$awsS3imageLocation = htmlspecialchars($upload->get('ObjectURL'));
+					$_SESSION["awsS3imageLocation"]=$awsS3imageLocation;
+					
+				} catch(Exception $e){
+					echo("!!TODO - do something with this exception!!");
+				}
+		//	}
+				
+				
 			$width = getWidth ( $large_image_location );
 			$height = getHeight ( $large_image_location );
 			
@@ -238,8 +255,7 @@ if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="generator" content="WebMotionUK" />
 <title>WebMotionUK - PHP &amp; Jquery image upload &amp; crop</title>
-<link rel="stylesheet" type="text/css"
-	href="css/imgareaselect-default.css" />
+<link rel="stylesheet" type="text/css" href="css/imgareaselect-default.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.imgareaselect.pack.js"></script>
 <script type="text/javascript">
@@ -252,14 +268,14 @@ if ($_GET ['a'] == "delete" && strlen ( $_GET ['t'] ) > 0) {
                 $('#blah').attr('src', e.target.result);
                 //see http://odyniec.net/projects/imgareaselect/examples.html 
                 //for how to dictate a max height and width for the cropped image (maxWidth: 200, max height: 150, x1....
-                $('#blah').imgAreaSelect({ aspectRatio: '5:8', x1: 22, y1: 33, x2: 100, y2: 145,
+               $('#blah').imgAreaSelect({ aspectRatio: '5:8', x1: 22, y1: 33, x2: 100, y2: 145,
                     onSelectEnd: function (img, selection) {
                         $('#x1').val(selection.x1);
                         $('#y1').val(selection.y1);
                         $('#x2').val(selection.x2);
                         $('#y2').val(selection.y2);           
                     }
-                })
+                })      
             }
 
 			//readAsDataURL returns the file as a data url

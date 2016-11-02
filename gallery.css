@@ -98,8 +98,8 @@ html, body {
 
 /* Welcome to... box */
 .tempWelcome {
-	width: 30%; /*  % width of the containing block */
-	height: 650px;  /* height of the welcome box is hard coded here...TODO change to adjust with photo viewer height */
+	width: 28%; /*  % width of the containing block */
+	height: 1000px;  /* height of the welcome box is hard coded here...TODO change to adjust with photo viewer height */
 	margin: 2em auto;
 	margin-left: 40px;
 	padding: 10px 30px;
@@ -113,7 +113,7 @@ html, body {
 
 .tempWelcome p {
 	font-family: Papyrus, fantasy;
-	font-size: 20px;
+	font-size: 16px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 400;
@@ -176,10 +176,10 @@ html, body {
 #tempHeading h1 {
 	padding: 30px;
 	font-family: Papyrus, fantasy;
-	font-size: 40px;
+	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
-	font-weight: 500;
+	font-weight: 750;
 	line-height: 26.4px;
 }
 

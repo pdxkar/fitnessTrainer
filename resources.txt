@@ -3,6 +3,7 @@ Image Upload (imgareaselect):
 	http://odyniec.net/projects/imgareaselect/
 	http://odyniec.net/projects/imgareaselect/examples.html
 	http://odyniec.net/projects/imgareaselect/usage.html
+	http://odyniec.net/projects/imgareaselect/examples-advanced.html
 	http://www.webmotionuk.com/php-jquery-image-upload-and-crop/
 	http://www.codeforest.net/upload-crop-and-resize-images-with-php
 	http://www.codeforest.net/html5-image-upload-resize-and-crop

@@ -5,9 +5,11 @@
     "twig/twig": "^1.19",
     "symfony/twig-bridge": "^2.7",
     "alrik11es/cowsayphp": "^1.2",
-    "herrera-io/silex-pdo": "^1.2"
+    "herrera-io/silex-pdo": "^1.2",
+    "aws/aws-sdk-php": "~2.6",
+    "ext-gd": "*"
   },
   "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
+	"heroku/heroku-buildpack-php": "*"
   }
 }

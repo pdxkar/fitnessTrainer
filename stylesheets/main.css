@@ -1,141 +1,249 @@
-body{
-  font-family: Arial,sans-serif;
-  font-size: 80%;
-  color: #333333;
-  line-height: 1.166; 
-  margin: 0px;
-  padding: 0px;
+/* The background, everything surrounding the header image, welcome box, and the resources */
+html, body
+{
+    font-family: Arial, sans-serif;
+    font-size: 90%;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #D3D3D3; /* light grey */
 }
 
-a{
-  color: #006699;
-  text-decoration: none;
+/* body {
+	font-family: Arial, sans-serif;
+	font-size: 80%;
+	color: #333333;
+	line-height: 1.166;
+	margin: 0px;
+	padding: 0px;
+} */
+
+a {
+    color: #006699; /* blue; */
+	text-decoration: none;
+}  
+
+a:link {
+	color: #006699; /* blue; */
+	text-decoration: none;
 }
 
-a:link{
-  color: #006699;
-  text-decoration: none;
+a:visited {
+	color: #006699; /* blue; */
+	text-decoration: none;
+} 
+
+a:hover {
+	color: #006699; /* blue; */
+	text-decoration: underline;
 }
 
-a:visited{
-  color: #006699;
-  text-decoration: none;
+/* Text: The Distillery */
+h1 {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 120%;
+	color: #334d55;  /* black-ish */
+	margin: 0px;
+	padding: 0px;
+} 
+
+*{
+    box-sizing: border-box;
+}  
+
+/*does nothing?*/
+h2 {
+	font-family: Arial, sans-serif;
+	font-size: 120%;
+	color: #334d55;   /* black-ish */
+	margin: 0px;
+	padding: 0px;
 }
 
-a:hover{
-  color: #006699;
-  text-decoration: underline;
+/*does nothing?*/
+h3 {
+	font-family: Arial, sans-serif;
+	font-size: 110%;
+	color: #334d55;  /* black-ish */
+	margin: 0px;
+	padding: 0px;
 }
 
-h1{
- font-family: Verdana,Arial,sans-serif;
- font-size: 120%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
+/* Things to take into your day*/
+h4 {
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+	 color: #334d55; /* black-ish */
+	margin: 0px;
+	padding: 0px;
 }
 
-h2{
- font-family: Arial,sans-serif;
- font-size: 120%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
+#header {
+	height: 90px;
+	background-image: url(/images/banner.jpg);
+	background-repeat: no-repeat;
+	background-position: top right; 
+	border-bottom: 1px solid #E2EAEF; /* light blue */
+/* 	background-image: url(banner.jpg);   */
+ 	width: 100%;
 }
 
-h3{
- font-family: Arial,sans-serif;
- font-size: 110%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
-}
+/* does nothing? */
+/* #nav {
+	padding: 5px; 
+	border-bottom: 1px solid #E2EAEF; light blue
+	border-top: 1px solid #E2EAEF; light blue
+	border-right: 1px solid #E2EAEF; light blue
+	 background-color: #FFE3AA; 
+	 background-color: red; 
+	float: left;
+	width: 15%; 
+	min-height: 400px;
+} */
 
-h4{
- font-family: Arial,sans-serif;
- font-size: 100%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
-}
-
-#header{
-  padding: 7px;
-  border-bottom: 1px solid #E2EAEF;
-  height: 90px;
-  width: 100%;
-  background-image: url(/images/banner.jpg);  
-/*   background-image: url(banner.jpg);  */
-  background-repeat: no-repeat;
-  background-position: top right;
-}
-
-#nav {
-  padding: 5px
-  border-bottom: 1px solid #E2EAEF;
-  border-top: 1px solid #E2EAEF;
-  border-right: 1px solid #E2EAEF;
-  background-color: #FFE3AA;
-  float: left;
-  width: 15%;
-  min-height: 275px;
-}
-
-#main {
-  padding: 10px;
-  border-top: 1px solid #E2EAEF;
-  float: left;
-  width: 20%;
+/* #main {
+	margin-left: 10px; 
+	padding: 3px; 
+	border-top: 1px solid #E2EAEF;
+	float: left;
+	width: 30%; 
 }
 
 #news {
-  padding: 5px;
-  border-top: 1px solid #E2EAEF;
-  border-left: 1px solid #E2EAEF;
-  background-color: #f3f6f8;
-  float: right;
-  width: 62%;
-  min-height: 275px;
+ 	padding: 5px;     
+	border-top: 1px solid #E2EAEF;
+	border-left: 1px solid #E2EAEF;
+	background-color: #f3f6f8;
+	float: right;
+	width: 50%; 
+	min-height: 275px;
+} */
+
+/* rectangle containing the resources; the padding is around the repeating boxes*/
+#main {
+ 	/* padding: 5px;      */
+ 	padding:30px;
+	border-top: 1px solid #E2EAEF;  /* light blue */
+	border-left: 1px solid #E2EAEF; /* light blue */
+	/* background-color: #f3f6f8; */ /* white-ish */
+	background-color: #FDF5E6; /* OldLace */
+/* 	float: right; */
+/* 	width: 50%;  */
+	width: 800px;
+	min-height: 275px;
+	margin: 0.5em auto;
 }
 
-#container {
-  /* width: 100%; */
-  border-top: 1px solid #483D8B;
-  border-left: 1px solid #483D8B;
-  border-right: 1px solid #483D8B;
-  border-bottom: 1px solid #483D8B;
-  padding: 3px;
+/* wrapper around each resource including icon*/
+#resourceWrapper {
+	border: 1px solid #483D8B; /* cornflower blue */
+ 	padding-top: 3px; 
+ 	padding-left: 3px;
+ 	padding-right: 3px;
+ 	/* padding-bottom: 3px;   */
+} 
 
+/* centermost part of essay display */
+#essayWrapper, #featureWrapper, #resourceOverviewWrapper {
+	border: 1px solid #B0C4DE;
+	padding: 30px; /*does nothing?*/
+	min-height: 1575px;
 }
 
+/* wrapper around title, resourceType, and text */
+#essayDescBox, #featureDescBox, #resourceOverviewDescBox {
+	width: 80%; 
+	height: 160px;
+	float: left;
+	border: 1px solid #B0C4DE;
+	padding-left: 5px;
+	padding-right: 3px;
+	min-height: 1575px;
+} 
+
+/* wrapper around title, resourceType, and text */
 #descBox {
-   width: 20%;
-/*  float: left; */
-  border-top: 1px solid #B0C4DE;
-  border-left: 1px solid #B0C4DE;
-  border-right: 1px solid #B0C4DE;
-  border-bottom: 1px solid #B0C4DE;
-  padding: 3px;
-
-}
+	width: 80%; 
+	height: 160px;
+	float: left;
+	border: 1px solid #B0C4DE;
+	padding-left: 5px;
+	padding-right: 3px;
+}  
 
 #logoBox {
-   width: 10%;
-/*    float: left;   */
-  border-top: 1px solid #B0C4DE;
-  border-left: 1px solid #B0C4DE;
-  border-right: 1px solid #B0C4DE;
-  border-bottom: 1px solid #B0C4DE;
-  padding: 3px;
-
+	width: 17%; 
+	height: 160px;
+	float: right;
+	border: 1px solid #B0C4DE; /* grey blue */
+	padding: 3px;
 }
+
+#essayTopWrapper {
+	padding-top: 10px;
+} 
+
+#toplineWrapper {
+	padding-top: 10px;
+	/* padding-right: 3px; */
+} 
+
+#title {
+	font-size: 1.5em;
+	font-weight: bold;
+	font-family: "Times New Roman", Georgia, Serif;
+	float: left;
+	width: 80%; 
+} 
 
 #footer {
   clear: both;
   text-align: center;
-  padding: 7px;
-  border-bottom: 1px solid #E2EAEF;
-  border-top: 1px solid #E2EAEF;
+  border-bottom: 1px solid #E2EAEF; /* light blue */
+  border-top: 1px solid #E2EAEF; /* light blue */
   background-color: #f3f6f8;
-  width: 100%;
+  width: 100%; 
+} 
+
+.button {
+	width: 75px;
+ 	padding: 5px;   
+	border-radius: 12px;
+	background-color: #E2EAEF; /* light blue */
+	border: 1px solid #666;
+	color: black;  
+	text-decoration: none;
+	float: right;
+	text-align: center;
+}
+
+#featuredEssayText {
+	padding-top: 5px;
+	/*  background-color: #000000; */
+}
+
+/* banner between header and resource listing */
+.welcome
+{
+    width: 800px;
+    margin: 2em auto;
+    padding: 10px 30px;
+    background-color: #FDF5E6  /* OldLace */
+}
+
+/* button in the banner between header and resource listing  */
+.welcome a
+{
+    display: inline-block;
+    width: 200px;
+    border: 2px solid #0DDED0;
+    padding: 0.5em;
+    text-align: center; 
+}
+
+.welcome h1 /* "Latest News */
+{
+    margin: 0;
+     color: #555;  /* dark grey */
 }

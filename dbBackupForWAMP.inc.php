@@ -1,6 +1,9 @@
 <?php
 
-require('../vendor/autoload.php');
+//dev setting
+require('vendor/autoload.php');
+//prod
+//require('../vendor/autoload.php');
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -15,17 +18,40 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 		'twig.path' => __DIR__.'/views',
 ));
 
-//Extend app to add a PDO connection
 $dbopts = parse_url(getenv('DATABASE_URL'));
 
+// Dev settings
+//$dbopts["dbname"] = 'recipe';
+$dbopts["port"] = "localhost";
+//$dbopts["host"] = "localhost";
+$dbopts["user"] = "test";
+$dbopts["pass"] = "test";
+
+//dev settings (DISTILLERY):
+//db for dev and demo:  'pdo.dsn' => 'mysql:dbname=distillerydemo',
+//db for prod:  		'pdo.dsn' => 'mysql:dbname=distillery',
 $app->register(new Herrera\Pdo\PdoServiceProvider(),
 		array(
-				'pdo.dsn' => 'mysql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"],
+				'pdo.dsn' => 'mysql:dbname=distillerydemo',
 				'pdo.port' => $dbopts["port"],
 				'pdo.username' => $dbopts["user"],
 				'pdo.password' => $dbopts["pass"]
 		)
-		);
+);
+
+//Prod settings
+//Extend app to add a PDO connection
+/* $dbopts = parse_url(getenv('DATABASE_URL'));
+
+/* $app->register(new Herrera\Pdo\PdoServiceProvider(),
+	array(
+		'pdo.dsn' => 'mysql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"],
+		'pdo.port' => $dbopts["port"],
+		'pdo.username' => $dbopts["user"],
+		'pdo.password' => $dbopts["pass"]
+	)
+);  */
+
 
 // Our web handlers
 $app->get('/', function() use($app) {

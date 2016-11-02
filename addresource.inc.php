@@ -9,7 +9,7 @@ $resourceImageUrl = $_POST['resourceImageUrl'];
 $resourceUrl = $_POST['resourceUrl'];
 
 if (!isset($_SESSION['valid_recipe_user'])) {
-	echo "<h2>Sorry, you must be logged in to post an essay.</h2><br>\n";
+	echo "<h2>Sorry, you must be logged in to post an resource.</h2><br>\n";
 	echo "<a href=\"index.php?content=login\">Please login to post your resource.</a><br>\n";
 } else {
 	$userid = $_SESSION['valid_recipe_user'];

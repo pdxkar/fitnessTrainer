@@ -97,6 +97,8 @@ class ImageManipulator
 	 */
 	public function resample($width, $height, $constrainProportions = true)
 	{
+		echo("<br />");
+		echo("in imageManipulator's resample function");
 		if (!is_resource($this->image)) {
 			throw new RuntimeException('No image set');
 		}
@@ -161,6 +163,8 @@ class ImageManipulator
 	 */
 	public function crop($x1, $y1 = 0, $x2 = 0, $y2 = 0)
 	{
+		echo("<br />");
+		echo("in imageManipulator's crop function");
 		if (!is_resource($this->image)) {
 			throw new RuntimeException('No image set');
 		}
@@ -213,9 +217,6 @@ class ImageManipulator
 	 */
 	public function save($fileName, $type = IMAGETYPE_JPEG)
 	{
-		print_r("in imageManipulator class, fileName = ");
-		print_r($fileName);
-		
 		$dir = dirname($fileName);
 		if (!is_dir($dir)) {
 			if (!mkdir($dir, 0755, true)) {
