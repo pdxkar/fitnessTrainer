@@ -2,7 +2,7 @@
 include 'db.inc.php';
 $id=$_POST['id'];
 
-//get resource to edit by id
+//get resource to delete by id
 $st = $app['pdo']->prepare('SELECT resourceId,resourceTitle,subtext,resourceImageUrl,resourceTypeId,resourceDesc,resourceUrl from resources where resourceId = :id' );
 
 $array = array (
@@ -21,8 +21,7 @@ $resourceTypeId = $row ['resourceTypeId'];
 $resourceDesc = $row ['resourceDesc'];
 $resourceUrl = $row ['resourceUrl'];
 				
-echo "<h1>Update Resource</h1>";
-echo "<h3>Edit and Submit</h3>";
+echo "<h1>Delete Resource</h1>";
 echo "<form action=\"index.php\" method=\"post\">";
 
 echo "<input type=\"hidden\" name=\"id\" value=\"";
@@ -32,7 +31,7 @@ echo "><br>";
 
 echo "<h4>Title:</h4>";
 echo "<input type=\"text\" size=\"50\" name=\"resourceTitle\" value=\"";
-echo "$resourceTitle";	
+echo "$resourceTitle";
 echo " \" readonly";
 echo "><br>";
 
@@ -60,8 +59,8 @@ echo "$resourceTypeId";
 echo " \"";
 echo "><br>";
 
-echo "<input type=\"submit\" value=\"Submit\">";
-echo "<input type=\"hidden\" name=\"content\" value=\"submitUpdatedResourceToDb\">";
+echo "<input type=\"submit\" value=\"Delete Resource\">";
+echo "<input type=\"hidden\" name=\"content\" value=\"submitResourceToBeDeleted\">";
 echo "</form>";
 
 ?>

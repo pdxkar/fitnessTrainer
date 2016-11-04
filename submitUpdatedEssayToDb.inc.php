@@ -9,8 +9,8 @@ $resourceId=$_POST['resourceId'];
 $featureId=$_POST['featureId'];
 
 if (!isset($_SESSION['valid_recipe_user'])) {
-	echo "<h2>Sorry, you must be logged in to update a feature.</h2><br>\n";
-	echo "<a href=\"index.php?content=login\">Please login to update a feature.</a><br>\n";
+	echo "<h2>Sorry, you must be logged in to update an essay.</h2><br>\n";
+	echo "<a href=\"index.php?content=login\">Please login to update an essay.</a><br>\n";
 } else {
 	$userid = $_SESSION['valid_recipe_user'];
 

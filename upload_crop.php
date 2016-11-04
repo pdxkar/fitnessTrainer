@@ -174,7 +174,6 @@ if (isset ( $_POST ["upload"] )) {
 	}
 	// Everything is ok, so we can upload the image.
 	if (strlen ( $error ) == 0) {
-		error_log("*****************************************test3*************************");
 		if (isset ( $_FILES ['image'] ['name'] )) {
 			//Use the ImageManipulator class to crop (and save?) the image
 			$manipulator = new ImageManipulator( $_FILES ['image'] ['tmp_name']);
@@ -192,22 +191,25 @@ if (isset ( $_POST ["upload"] )) {
 			
 			//put the image into an AWS s3 bucket for permanent storage and capture this
 			//permanent location in the session variable "largeImageLocation"
-			require('../vendor/autoload.php');
+			//Everything below (require, $s3, $bucket, and the try-catch) must
+			//be uncommented when the site goes live on Heroku
+			//***Don't uncomment the "if" statement
+			//require('../vendor/autoload.php');
 			//read the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
-			$s3 = Aws\S3\S3Client::factory();
-			$bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var found in env!');
+			//$s3 = Aws\S3\S3Client::factory();
+			//this "bucket" must be uncommented when the site goes live on Heroku
+			//$bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var found in env!');
 			//TODO should I have this if here in some capacity, or is it redundant?
 		//	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset( $_FILES ['image'] ['name']) && $_FILES['image']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['image']['tmp_name'])) {
 				// FIXME: add more validation, e.g. using ext/fileinfo
-				try {
-					// FIXME: do not use 'name' for upload (that's the original filename from the user's computer)
-					$upload = $s3->upload($bucket, $_FILES['image']['name'], fopen($_SESSION["largeImageLocation"], 'rb'), 'public-read');
-					$awsS3imageLocation = htmlspecialchars($upload->get('ObjectURL'));
-					$_SESSION["awsS3imageLocation"]=$awsS3imageLocation;
-					
-				} catch(Exception $e){
-					echo("!!TODO - do something with this exception!!");
-				}
+// 				try {
+// 					// FIXME: do not use 'name' for upload (that's the original filename from the user's computer)
+// 					$upload = $s3->upload($bucket, $_FILES['image']['name'], fopen($_SESSION["largeImageLocation"], 'rb'), 'public-read');
+// 					$largeImageLocation = htmlspecialchars($upload->get('ObjectURL'));
+// 					$_SESSION["largeImageLocation"]=$largeImageLocation;				
+// 				} catch(Exception $e){
+// 					echo("!!TODO - do something with this exception!!");
+// 				}
 		//	}
 				
 				

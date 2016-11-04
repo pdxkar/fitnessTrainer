@@ -14,10 +14,13 @@
 			echo "<ul class=\"dropdown-menu\">";
 			echo "<li><a href=\"newresource.inc.php?\">Add Resource</a></li>";
 			echo "<li><a href=\"selectResourceToEdit.inc.php?\">Edit Resource</a></li>";
+			echo "<li><a href=\"selectResourceToDelete.inc.php?\">Delete Resource</a></li>";
 			echo "<li><a href=\"newfeature.inc.php?\">Add Feature</a></li>";
 			echo "<li><a href=\"selectFeatureToEdit.inc.php?\">Edit Feature</a></li>";
+			echo "<li><a href=\"selectFeatureToDelete.inc.php?\">Delete Feature</a></li>";
 			echo "<li><a href=\"newessay.inc.php?\">Add Essay</a></li>";
 			echo "<li><a href=\"selectEssayToEdit.inc.php?\">Edit Essay</a></li>";
+			echo "<li><a href=\"selectEssayToDelete.inc.php?\">Delete Essay</a></li>";
 			echo "<li><a href=\"testGallery.inc.php?\">Test Gallery</a></li>";
 			echo "<li class=\"divider\"></li>";
 			echo "<li><a href=\"thistledownSoftwareCompany.inc.php\">Thistledown Software Company</a></li>";
