@@ -197,19 +197,18 @@ if (isset ( $_POST ["upload"] )) {
 			//require('../vendor/autoload.php');
 			//read the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
 			//$s3 = Aws\S3\S3Client::factory();
-			//this "bucket" must be uncommented when the site goes live on Heroku
 			//$bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var found in env!');
 			//TODO should I have this if here in some capacity, or is it redundant?
 		//	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset( $_FILES ['image'] ['name']) && $_FILES['image']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['image']['tmp_name'])) {
 				// FIXME: add more validation, e.g. using ext/fileinfo
-// 				try {
-// 					// FIXME: do not use 'name' for upload (that's the original filename from the user's computer)
-// 					$upload = $s3->upload($bucket, $_FILES['image']['name'], fopen($_SESSION["largeImageLocation"], 'rb'), 'public-read');
-// 					$largeImageLocation = htmlspecialchars($upload->get('ObjectURL'));
-// 					$_SESSION["largeImageLocation"]=$largeImageLocation;				
-// 				} catch(Exception $e){
-// 					echo("!!TODO - do something with this exception!!");
-// 				}
+				//try {
+				//	// FIXME: do not use 'name' for upload (that's the original filename from the user's computer)
+				//	$upload = $s3->upload($bucket, $_FILES['image']['name'], fopen($_SESSION["largeImageLocation"], 'rb'), 'public-read');
+				//	$largeImageLocation = htmlspecialchars($upload->get('ObjectURL'));
+				//	$_SESSION["largeImageLocation"]=$largeImageLocation;				
+				//} catch(Exception $e){
+				//	echo("!!TODO - do something with this exception!!");
+				//}
 		//	}
 				
 				
