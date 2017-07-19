@@ -1,10 +1,9 @@
 <div class='welcome'>
 	<?php 
-	echo "<p><span style=\"font-size:20px\">Welcome to The Distillery, </span>";
-	echo "<span style=\"font-size:15px\">a collection of resources that could help make your day better if you only ";
-	echo "had the time to find them!  From the podcasts and audiobooks to fill the soul-sucking void of your commute,";
-	echo "to the art of local galleries, we sift through the internet ocean to bring you the best of blogs,";
-	echo "books, restaurants, and anything else that we think is worthy.</span></p> ";
+	echo "<p><span style=\"font-size:20px\">Welcome to The Fitness Trainer, </span>";
+	echo "<span style=\"font-size:15px\">a collection of workouts and demos to help you make it between training sessions. ";
+	echo "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.  ";
+	echo "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</span></p> ";
 	?>
 </div>
 

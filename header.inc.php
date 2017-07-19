@@ -1,10 +1,15 @@
-<h1><br>The Distillery</h1>
-<h4><em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Things to take into your day"</em></h4>
+<h1><br>&nbsp;&nbsp;Fitness Trainer</h1>
+<h4><em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"xxx"</em></h4>
 <br />
 <br />
 <div class='container'>
 	<?php 
-		session_start();
+		
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
 		//if logged in
 		if (isset($_SESSION['valid_recipe_user'])) {
 			echo "<ul class=\"nav nav-pills\">";

@@ -24,7 +24,7 @@ session_start ();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="imgareaselect-default.css" />
 
-<title>xxx Fitness Trainer</title>
+<title>Fitness Trainer</title>
 
 </head>
 <body>

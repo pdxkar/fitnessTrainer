@@ -1,58 +1,35 @@
+<h2 align="center">The Latest Exercises</h2><br>
+
 <?php
 include 'db.inc.php';
 
 // get all resources
 // TODO get resourceURL
-$st = $app ['pdo']->prepare ( 'SELECT resourceId,resourceTitle,subtext,resourceImageUrl,resourceTypeId,resourceDesc from resources' );
-$st->execute ();
-
-//display each resource's info with a link to read more
+$st = $app ['pdo']->prepare ( 'SELECT exerciseid,name,type,shortdesc,instructions,url from exercies' );
+$st->execute();
+echo "<div>This is a test Middle Middle</div>";
+//display each exercise
 while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
+
+	$exerciseId = $row ['exerciseid'];
+	$name = $row ['name'];
+	$type = $row ['type'];
+	$shortdesc = $row ['shortdesc'];
 	
-	$resourceId = $row ['resourceId'];
-	$resourceTitle = $row ['resourceTitle'];
-	$resourceImageUrl = $row ['resourceImageUrl'];
-	$resourceTypeId = $row ['resourceTypeId'];
+	$instructions = $row ['instructions'];
+	$url = $row ['url'];
 	
-	$subtext = $row ['subtext'];
-	$resourceDesc = $row ['resourceDesc'];
+echo "
+<div>$exerciseId</div>
+<div>$name</div>
+<div>$type</div>
+<div>$shortdesc</div>
+<div>$instructions</div>
+<div>$url</div>
+";
 	
-	// get the resource type name (i.e. "podcast") for each resource
-	$stmt = $app ['pdo']->prepare ( 'SELECT resourceTypeName from resourceTypes where resourceTypeId = :resourceTypeId' );
-	
-	$array = array (
-			'resourceTypeId' => $resourceTypeId 
-	);
-	
-	$stmt->execute ( $array );
-	
-	$row = $stmt->fetch ( PDO::FETCH_ASSOC );
-	
-	$resourceTypeName = $row ['resourceTypeName'];
-	
-	echo "<div id=\"resourceWrapper\">
-	<div id=\"descBox\">
-	<div id=\"toplineWrapper\">
-	<div id=\"title\">$resourceTitle</div>
-	<a class=\"button\">$resourceTypeName</a>";
-	
-	/* display the resource's title, subtitle, and description */
-	echo "<div id=\"subtitle\"><b>$subtext</b><br></div>";
-	echo "<div style=\"clear: both\"></div>";
-	echo "</div>";
-	echo substr ( $resourceDesc, 0, 400 );
-	echo "<font color=\"blue\">...
-		  <a href=\"index.php?content=readResourceOverview&subtext=$subtext
-		  		&resourceId=$resourceId
-				&resourceDesc=$resourceDesc
-				&resourceTitle=$resourceTitle
-				&resourceTypeName=$resourceTypeName
-				&resourceImageUrl=$resourceImageUrl
-				\">read more</a></font>";
-	
-	echo "</div>
-	<div id=\"logoBox\"><img src=\"$resourceImageUrl\" alt=\"W3Schools.com\" style=\"width:104px;height:142px;\"></div>
-	<div style=\"clear: both\"></div>
-	</div>";
+
 }
+echo "<div>This is a test Very bottom</div>";
 ?>
+
